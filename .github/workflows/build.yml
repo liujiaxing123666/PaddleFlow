@@ -44,7 +44,7 @@ jobs:
     - name: Packaging
       run: tar -zcvf paddleflow-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz output/
     - name: Building an image
-      run: docker build --file DockerfilePath -t paddleflow/paddleflow-server:build-test1
+      run: docker build --file ../../installer/dockerfile/paddleflow-server/Dockerfile -t paddleflow/paddleflow-server:build-test1
     - name: Docker image push
       run: docker push paddleflow/paddleflow-server:build-test1
     - name: Uploading assets
