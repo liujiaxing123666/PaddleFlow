@@ -43,6 +43,10 @@ jobs:
         cd client && python3 -m pip install setuptools && python3 setup.py bdist_wheel && cp dist/* ../output/ && cd ..
     - name: Packaging
       run: tar -zcvf paddleflow-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz output/
+    - name: Building an image
+      run: docker build --file DockerfilePath -t paddleflow/paddleflow-server:build-test1
+    - name: Docker image push
+      run: docker push paddleflow/paddleflow-server:build-test1
     - name: Uploading assets
       uses: actions/upload-artifact@v3
       with:
